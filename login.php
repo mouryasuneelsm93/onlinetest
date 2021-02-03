@@ -9,15 +9,14 @@
 	
 	if(isset($_SESSION['admin']))
 	{
-		header("location:admin/create.php");
+		header("location:admin/dashboard.php");
 	}
 	?>
     <!---login--->
 			<div class="container pt-5 pb-5">
                 <div class="row">
 							<div class="col-sm-6">
-									 <h3>New customers</h3>
-									 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+									 <h3>New User</h3>
 									 <a class="acount-btn" href="signup.php">Create an Account</a>
 								</div>
 								<div class="col-sm-6">
@@ -29,7 +28,7 @@
 										<span>Email Address<label>*</label></span>
                                       </div>
                                       <div class="col-sm-6">
-										<input type="text" name="username" class="form-control" required> 
+										<input type="email" name="username" class="form-control" required> 
 									  </div>
                                     </div>
                                     <div class="row">

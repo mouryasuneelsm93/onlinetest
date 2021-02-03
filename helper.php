@@ -35,19 +35,19 @@ switch($action)
         $id1=$_POST['id'];
         $cname=$_POST['cname'];
         $opt=$_POST['opt'];
-        if($id1==4)
+        if($id1==10)
         {
-            if($marks>0)
+            // echo $marks;
+            if($marks==45)
             {
-                $marks=$marks+10;
-                // echo $marks;
+                $marks=$marks+5;    
                 $name=$_SESSION['user'];
                 $result2=$obj->user_data($name,$cname,$marks);
-                
             }
             else
             {
-                echo $marks;
+                $name=$_SESSION['user'];
+                $result2=$obj->user_data($name, $cname, $marks);
             }
         }
         
@@ -72,7 +72,7 @@ switch($action)
                 }
                 else if($key!='id')
                 {
-                    echo "<input type='radio' name='opt' style='margin-left:2%!important;' value='$value1'> <span style='font-size:20px'>$value1</span> </br>";
+                    echo "<input type='radio' name='opt' style='margin-left:2%!important;' value='$value1'> <span style='font-size:20px'><input style='border:0px;' value='$value1' readonly></span> </br>";
                 }
                 
             }
@@ -85,6 +85,11 @@ switch($action)
     case "create":
         $cname=$_POST['cname'];
         $result=$obj->c_insert($cname);
+        echo $result;
+    break;
+    case "del":
+        $id=$_POST['id'];
+        $result=$obj->del($id);
         echo $result;
 }
 

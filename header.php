@@ -1,8 +1,8 @@
 <?php
-session_start();
+include_once("all_query.php");
 if(isset($_SESSION['admin']))
 {
-  header("location:admin/create.php");
+  header("location:admin/dashboard.php");
 }
 ?>
 <!DOCTYPE html>

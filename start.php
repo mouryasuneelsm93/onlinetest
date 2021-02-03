@@ -22,6 +22,7 @@ $result=$obj->c_show();
     <style>
 .r2{
     display:none;
+    
 }
 #r2{
     display:none;
@@ -49,11 +50,33 @@ $result=$obj->c_show();
     font-family: 'Potta One', cursive;
 
 }
+#trig{
+    display:none;
+}
+#t{
+    display:none;
+    padding-left:40px;
+    padding-right:40px;
+}
+.data{
+    padding-left:40px;
+    padding-top:20px;
+    padding-bottom: 20px;
+}
 </style>
+
 </head>
 <body>
 
- <div class="container">
+ <div class="jumbotron-fluid">
+    <div class="row bg-warning" id="t">
+        <div class="col-sm-10" style="font-size:3.5rem;color:#264B90;">Left Time</div>
+         <div class="col-sm-2 text-right">
+             <div class="timer" style="font-size:3.5rem;color:#5BB349;">
+             <input type="button" id="trig" disabled>
+             </div>
+        </div>
+    </div>
     <div class="contain">
     <div class="row pb-5 pt-5 r1">
         <div class="col-sm-4"></div>

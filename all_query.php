@@ -14,7 +14,7 @@ class Details extends Db
     }
     function insert($name,$pass,$email)
     {
-        $sql="INSERT into tbl_user(username,email,password,is_admin) VALUES('$name','$pass','$email',0)";
+        $sql="INSERT into tbl_user(username,password,email,is_admin) VALUES('$name','$pass','$email',0)";
         if($this->con->query($sql)==true)
         {
             return "1";
@@ -26,16 +26,13 @@ class Details extends Db
     }
     function show($user,$pass)
     {
-        $sql="SELECT *from tbl_user where username='$user'";
-        $result=$this->con->query($sql);
-        
+        $sql="SELECT *from tbl_user where email='$user' and password='$pass'";
+        $result=$this->con->query($sql);      
         if ($result->num_rows > 0) {
-            // output data of each row
             while($row = $result->fetch_assoc()) {
               if($row['is_admin']==1)
               {
                 $_SESSION['admin']=$row['username'];
-            
               }
               else
               {
@@ -173,14 +170,63 @@ class Details extends Db
               
             } else {
               echo "0 results";
-            }
-           
-           
-            // return $row;
-        
+            }        
             $this->con->close();
         }
-    
+        function tbl_user_show()
+        {     
+            $sql="SELECT *from tbl_user where is_admin=0";
+            $result=$this->con->query($sql);
+            // $this->arr=  $result->fetch_assoc();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $this->arr[]=array(
+                  'id'=>$row['id'],
+                  'username'=>$row['username'],
+                  'email'=>$row['email']
+                );
+                
+                }
+            }
+              return $this->arr;  
+            $this->con->close();
+        }
+      function single_user_info($id)
+    {
+            
+            $sql="SELECT *from user_data where u_id='$id'";
+            $result=$this->con->query($sql);
+            // $row[] = $result->fetch_assoc();
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                $this->arr[]=array(
+                  'id'=>$row['id'],
+                  'category'=>$row['category'],
+                  'marks'=>$row['marks']
+                );
+              }
+              return $this->arr;  
+              
+            } else {
+              echo "0 results";
+            }        
+            $this->con->close();
+        }
+        function del($id)
+        {
+                
+                $sql="DELETE from user_data where id='$id'";
+                $result=$this->con->query($sql);
+                if($result==true)
+                {
+                  $b=1;
+                }
+                else 
+                {
+                  $b=0;
+                }
+                  return $b;       
+            }
 }
 
 

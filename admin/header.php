@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once("../all_query.php");
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@ session_start();
     background-repeat: no-repeat;
     background-size: cover;
     /* background-position: center; */
-    padding-bottom: 10px;
+    padding-bottom: 10%;
 }
    </style>
    <!-- <link rel="stylesheet" href="../style.css"> -->
@@ -57,7 +57,7 @@ session_start();
                  <?php echo '<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" style="color:blue"> '.$_SESSION['admin'].'</a>';?>
 								
 								<ul class="dropdown-menu"><li>
-								<?php echo '<a href="">Dashboard</a></li><li><a href="../logout.php">Logout</a></li>';?>
+								<?php echo '<a href="dashboard.php">Dashboard</a></li><li><a href="../logout.php">Logout</a></li>';?>
 								</li></ul></li>
 								<?php endif;?>
                
