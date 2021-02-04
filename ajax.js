@@ -113,10 +113,10 @@ $(document).ready(function() {
                 'action': 'next'
             },
             success: function(data) {
-                //console.lo(data);
+                // console.log(data);
                 if (data.match("&nbsp")) {
                     i = i + 5;
-                    //console.lo(i);
+                    console.log(i);
                     $(".score").html(`<h1 class="pro">${i}</h1>`);
                     if (i > 10) {
 

@@ -35,6 +35,7 @@ switch($action)
         $id1=$_POST['id'];
         $cname=$_POST['cname'];
         $opt=$_POST['opt'];
+        
         if($id1==10)
         {
             // echo $marks;
@@ -50,25 +51,27 @@ switch($action)
                 $result2=$obj->user_data($name, $cname, $marks);
             }
         }
-        
+        $a=rand(0,10);
+        $id1=$id1+1;
         $result1=$obj->ques_show($cname);
         $result=$obj->marks_show($opt);
-        // echo $result;
         if($result!="0")
         {
             echo "&nbsp&nbsp";
 
         }
         foreach($result1 as $key=>$value)
-        {   if($key==$id1)
+        {   if($key==$a)
             {
+              
             foreach($value as $key=>$value1)
-            {  if($key=='id')
+            {    
+                if($key=='id')
                 {
                     $ids=$value1;
                 }
                 else if ($key=="ques") {
-                    echo "<h3 style='color:green;font-weight:bold;font-size:30px;'>Q$ids $value1</h3>";
+                    echo "<h3 style='color:green;font-weight:bold;font-size:30px;'>Q$id1 $value1</h3>";
                 }
                 else if($key!='id')
                 {

@@ -13,4 +13,14 @@ a {
 
 a:hover {
     text-decoration: none;
+    color: white;
+    background-color: #5BB349!important;
+}
+
+.btn {
+    padding: 10px 20px;
+}
+
+.btn:hover {
+    background-color: #5BB349!important;
 }

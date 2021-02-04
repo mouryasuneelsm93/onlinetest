@@ -15,8 +15,6 @@ include_once("header.php");
 ?>
  <div class="container-fluid">
     <?php
-    
-include_once("all_query.php");
 $obj=new Details();
 $result=$obj->data_user();
 // print_r($result);

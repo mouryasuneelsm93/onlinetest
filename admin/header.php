@@ -27,6 +27,16 @@ include_once("../all_query.php");
     /* background-position: center; */
     padding-bottom: 10%;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #5BB349!important;
+}
    </style>
    <!-- <link rel="stylesheet" href="../style.css"> -->
 
