@@ -113,7 +113,7 @@ $(document).ready(function() {
                 'action': 'next'
             },
             success: function(data) {
-                // console.log(data);
+                console.log(data);
                 if (data.match("&nbsp")) {
                     i = i + 5;
                     console.log(i);
@@ -146,7 +146,11 @@ $(document).ready(function() {
         id = id + 1;
     });
     $(".back").on('click', function() {
+        if (id <= 0) {
+            id = 1;
+        }
         id = id - 1;
+
         var n = $("#select").val();
         //console.lo(n);
         $.ajax({

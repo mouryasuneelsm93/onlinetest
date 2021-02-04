@@ -55,6 +55,8 @@ switch($action)
         $id1=$id1+1;
         $result1=$obj->ques_show($cname);
         $result=$obj->marks_show($opt);
+        // print_r($result1);
+       
         if($result!="0")
         {
             echo "&nbsp&nbsp";
