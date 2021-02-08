@@ -2,7 +2,7 @@
 include_once("all_query.php");
 error_reporting(0);
 $obj=new Details();
-$action=$_POST['action'];
+$action=$_REQUEST['action'];
 switch($action)
 {
     case "insert":
@@ -31,41 +31,13 @@ switch($action)
         print_r($result);
     break;
     case "next":
-        $marks=$_POST['marks'];
-        $id1=$_POST['id'];
-        $cname=$_POST['cname'];
-        $opt=$_POST['opt'];
-        
-        if($id1==10)
+        $cname=$_POST['cname'];        
+        $result=$obj->ques_show($cname);
+        $i=0;
+        foreach($result as $key=>$value)
         {
-            // echo $marks;
-            if($marks==45)
-            {
-                $marks=$marks+5;    
-                $name=$_SESSION['user'];
-                $result2=$obj->user_data($name,$cname,$marks);
-            }
-            else
-            {
-                $name=$_SESSION['user'];
-                $result2=$obj->user_data($name, $cname, $marks);
-            }
-        }
-        $a=rand(0,10);
-        $id1=$id1+1;
-        $result1=$obj->ques_show($cname);
-        $result=$obj->marks_show($opt);
-        // print_r($result1);
-       
-        if($result!="0")
-        {
-            echo "&nbsp&nbsp";
-
-        }
-        foreach($result1 as $key=>$value)
-        {   if($key==$a)
-            {
-              
+            $j=$i+1;
+            echo "<div class='tab$i'>";
             foreach($value as $key=>$value1)
             {    
                 if($key=='id')
@@ -73,19 +45,20 @@ switch($action)
                     $ids=$value1;
                 }
                 else if ($key=="ques") {
-                    echo "<h3 style='color:green;font-weight:bold;font-size:30px;'>Q$id1 $value1</h3>";
+                    echo "<h3 style='color:green;font-weight:bold;font-size:30px;'><input value='Q$j $value1' style='border:none;width:100%'  readonly></h3>";
+                }
+                else if($key=='ans')
+                {
+                    echo "<div class='ans$i'><input type='text' style='border:none' class='ans' value='$value1'></div>";
                 }
                 else if($key!='id')
                 {
-                    echo "<input type='radio' name='opt' style='margin-left:2%!important;' value='$value1'> <span style='font-size:20px'><input style='border:0px;' value='$value1' readonly></span> </br>";
-                }
-                
-            }
-            
-            }   
+                    echo "<input type='radio' name='opt' style='margin-left:2%!important;' value='$value1'> <span style='font-size:20px'><input style='border:0px;' value='$value1' readonly ></span> </br>";
+                }   
+            }    
+            echo "</div>";
+            $i++; 
         }
-    break;
-    case "qnext":
     break;
     case "create":
         $cname=$_POST['cname'];
@@ -96,7 +69,10 @@ switch($action)
         $id=$_POST['id'];
         $result=$obj->del($id);
         echo $result;
+        break;
+    case "getuserdata": 
+        $result = $obj->data_user();
+        echo json_encode($result);
+        break;
+    
 }
-
-
-?>

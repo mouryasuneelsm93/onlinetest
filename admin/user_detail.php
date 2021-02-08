@@ -12,7 +12,7 @@
 
 <?php
 include_once("header.php");
-include_once("../all_query.php");
+// include_once("../all_query.php");
 $obj=new Details();
 $result=$obj->tbl_user_show();
 // print_r($result);

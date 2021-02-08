@@ -48,7 +48,7 @@ $(document).ready(function() {
             url: '../helper.php',
             data: $(this).serialize() + '&action=add',
             success: function(data) {
-                //console.lo(data);
+                console.log(this.data);
                 if (data == 1) {
                     alert("inserted");
                     location.reload();
@@ -66,7 +66,7 @@ $(document).ready(function() {
     $("#category").on('click', function(e) {
         e.preventDefault();
         let cname = $("#c_name").val();
-        //console.lo(cname);
+        console.log(cname);
         $.ajax({
             type: 'POST',
             url: '../helper.php',
@@ -86,88 +86,29 @@ $(document).ready(function() {
         })
     })
     var i = 0;
-
-
     $(".qnext").on('click', function() {
         var a = $("#trig").prop('disabled', false);
-
         if (a.length == 1) {
             $("#t").show();
             setInterval(function() { myFunction(); }, 1000);
-        } else {
-            //console.lo("wr");
-        }
-        $("#qnext").show();
-        $("#back").show();
+        } else {}
         var n = $("#select").val();
-        //console.lo(id);
-        var opt = $('input[name="opt"]:checked').val();
+        $("#r2").hide();
+        $("#regForm").show();
         $.ajax({
             type: 'POST',
             url: 'helper.php',
             data: {
                 'cname': n,
-                'id': id,
-                'marks': i,
-                'opt': opt,
                 'action': 'next'
             },
             success: function(data) {
-                console.log(data);
-                if (data.match("&nbsp")) {
-                    i = i + 5;
-                    console.log(i);
-                    $(".score").html(`<h1 class="pro">${i}</h1>`);
-                    if (i > 10) {
-
-                        $(".pass").html(`<h1 class="pro">Pass</h1>`);
-                    } else {
-                        $(".pass").html(`<h1 class="pro">Fail</h1>`);
-                    }
-                }
-                if (id >= 11) {
-                    $(".five").hide();
-                    $(".sc").show();
-                    $(".pro").show();
-                    $(".sco").show();
-                } else {
-                    $(".score").html(`<h1 class="pro">${i}</h1>`);
-                    if (i < 5) {
-
-                        $(".pass").html(`<h1 class="pro">Fail</h1>`);
-                    }
-                }
-                $(".contain").hide();
-                $(".data").html(data);
-            }
-
-        })
-
-        id = id + 1;
-    });
-    $(".back").on('click', function() {
-        if (id <= 0) {
-            id = 1;
-        }
-        id = id - 1;
-
-        var n = $("#select").val();
-        //console.lo(n);
-        $.ajax({
-            type: 'POST',
-            url: 'helper.php',
-            data: {
-                'cname': n,
-                'id': id,
-                'action': 'next'
-            },
-            success: function(data) {
-                // //console.lo(data);
-                $(".contain").hide();
-                $(".data").html(data);
+                // console.log(data);
+                $(".tab").html(`${data}`);
             }
         })
     });
+
     $(".del").on('click', function() {
         let id = $(this).data("id");
         let a = confirm("are you sure you want to delete");
@@ -193,8 +134,8 @@ $(document).ready(function() {
     })
 
 })
-var sec = 59;
-var min = 4;
+var sec = 10;
+var min = 0;
 
 function myFunction() {
     $(".timer").text(min + ":" + sec);
@@ -204,10 +145,12 @@ function myFunction() {
         sec = 59;
     }
     if (min == -1 && sec == 59) {
-        $(".five").hide();
-        $(".sc").show();
-        $(".pro").show();
-        $(".sco").show();
+        $("#regForm").hide();
+        $(".score").show();
+        $(".marks").text(marks);
+        $(".right").text(right);
+        $(".wrong").text(wrong);
+        $(".notq").text(ques);
         $(".timer").hide();
     }
 }
